@@ -170,8 +170,8 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
       url: 'https://imgur-apiv3.p.mashape.com/3/image',
       type: 'post',
       headers: {
-          X-Mashape-Key: 'RZXowHBxPnmshk1lns9qupoq3VOmp1spOPzjsnnLGfzKshnqLx',
-          Authorization: 'Client-ID 98427a6259b4a7c'
+          'X-Mashape-Key': 'RZXowHBxPnmshk1lns9qupoq3VOmp1spOPzjsnnLGfzKshnqLx',
+          'Authorization': 'Client-ID 98427a6259b4a7c'
       },
       data: {
           image: base64.split(',')[1]

@@ -623,10 +623,9 @@ button:disabled,
     max-width: 100%;
     min-width: 27em;
     padding: 4.5em 3em 3em 3em;
-    background: #fff;
+    background: rgba(255,255,255,0.8);
     border-radius: 4px;
     cursor: default;
-    opacity: 0.80;
     text-align: center;
     -moz-transform-origin: 50% 50%;
     -webkit-transform-origin: 50% 50%;
@@ -644,12 +643,13 @@ button:disabled,
 #main .avatar {
     position: relative;
     display: block;
-    margin-bottom: 1.5em
+    margin-bottom: 1.5em;
+    border: 0;
 }
 #main .avatar img {
     display: block;
     margin: 0 auto;
-    box-shadow: 0 0 0 1.5em #fff
+    opacity: 0.5;
 }
 #main .avatar:before {
     content: '';

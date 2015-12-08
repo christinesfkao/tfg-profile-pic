@@ -510,16 +510,25 @@ label.checkbox {
   cursor: move;
 }
 /* line 58, ../sass/partials/_preview.scss */
-.preview #size-slider {
+.preview #size-slider, .preview #size-slider2 {
   position: absolute;
-  bottom: -40px;
   left: 0;
   right: 0;
   z-index: 100;
   margin: 0 20px;
 }
+
+.preview #size-slider {
+  bottom: -40px;
+}
+
+.preview #size-slider2 {
+  bottom: -90px;
+}
 /* line 67, ../sass/partials/_preview.scss */
-.preview #size-slider.ui-widget-content {
+.preview #size-slider.ui-widget-content,
+.preview #size-slider2.ui-widget-content
+ {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
@@ -527,8 +536,11 @@ label.checkbox {
   border-radius: 0px;
   height: 1px;
 }
+
 /* line 71, ../sass/partials/_preview.scss */
-.preview #size-slider.ui-widget-content:before {
+.preview #size-slider.ui-widget-content:before,
+.preview #size-slider2.ui-widget-content:before
+ {
   content: "";
   position: absolute;
   top: -21px;
@@ -547,7 +559,11 @@ label.checkbox {
 /* line 86, ../sass/partials/_preview.scss */
 .preview #size-slider .ui-state-default,
 .preview #size-slider .ui-widget-content .ui-state-default,
-.preview #size-slider .ui-widget-header .ui-state-default {
+.preview #size-slider .ui-widget-header .ui-state-default,
+.preview #size-slider2 .ui-state-default,
+.preview #size-slider2 .ui-widget-content .ui-state-default,
+.preview #size-slider2 .ui-widget-header .ui-state-default
+{
   outline: none;
   width: 30px;
   height: 30px;
@@ -562,19 +578,22 @@ label.checkbox {
   cursor: pointer;
 }
 /* line 96, ../sass/partials/_preview.scss */
-.preview #size-slider .ui-slider-handle {
+.preview #size-slider .ui-slider-handle,
+.preview #size-slider2 .ui-slider-handle {
   top: -0.9em;
   margin-left: -0.8em;
 }
 /* line 100, ../sass/partials/_preview.scss */
-.preview #size-slider .zoomin {
+.preview #size-slider .zoomin,
+.preview #size-slider2 .zoomin {
   color: #00acb3;
   position: absolute;
   top: -15px;
   right: -17px;
 }
 /* line 106, ../sass/partials/_preview.scss */
-.preview #size-slider .zoomout {
+.preview #size-slider .zoomout,
+.preview #size-slider2 .zoomout {
   color: #00acb3;
   position: absolute;
   top: -15px;

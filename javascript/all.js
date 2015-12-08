@@ -2,7 +2,9 @@ var
 $userimage = $('#userimage .inner'),
 $coverimage = $('#coverimage .inner'),
 $dragger = $('#dragger'),
+$dragger2 = $('#dragger2'),
 $sizer = $('#size-slider'),
+$sizer2 = $('#size-slider2'),
 $loading = $('#loading');
 $uploading = $('#uploading');
 
@@ -28,12 +30,20 @@ $(document).ready(function()
   // dragger
   $dragger.draggable({
     drag: function(event) {
-      $userimage.css('background-position',$dragger.css('left')+' '+$dragger.css('top'));
+      $coverimage.css('background-position',$dragger.css('left')+' '+$dragger.css('top'));
+      if($coverimage.hasClass('dragged') == false) $coverimage.addClass('dragged');
+      var value = $('input[name=template]:checked').val();
+      if(value == 9 || value == 10) $coverimage.attr('class','inner');
+    }
+  });
+  /*$dragger2.draggable({
+    drag: function(event) {
+      $userimage.css('background-position',$dragger2.css('left')+' '+$dragger2.css('top'));
       if($userimage.hasClass('dragged') == false) $userimage.addClass('dragged');
       var value = $('input[name=template]:checked').val();
       if(value == 9 || value == 10) $userimage.attr('class','inner');
     }
-  });
+  });*/
 
   // size slider
   $sizer.slider({
@@ -53,10 +63,37 @@ $(document).ready(function()
         height = size[1]*(ui.value)/100,
         left = center[0] - width*0.5,
         top = center[1] - height*0.5;
+        /*$dragger
+          .css('width',width+'px').css('height',height+'px')
+          .css('top',top+'px').css('left',left+'px');*/
+        $userimage
+          .css('background-size',width+'px '+height+'px')
+          .css('background-position',left+'px '+top+'px');
+      });
+
+    }
+  });
+  $sizer2.slider({
+    value: 100,
+    max: 170,
+    min: 30,
+    slide: function(event, ui) {
+      var
+      truesize = getBackgroundSize($coverimage.css('background-size')),
+      position = getBackgroundPosition($coverimage.css('background-position')),
+      center = getBackgroundCenterPoint(truesize,position);
+      $('<img/>').attr('src',getBackgroundImage($coverimage))
+      .load(function() {
+        var
+        size = [this.width,this.height],
+        width = size[0]*(ui.value)/100,
+        height = size[1]*(ui.value)/100,
+        left = center[0] - width*0.5,
+        top = center[1] - height*0.5;
         $dragger
           .css('width',width+'px').css('height',height+'px')
           .css('top',top+'px').css('left',left+'px');
-        $userimage
+        $coverimage
           .css('background-size',width+'px '+height+'px')
           .css('background-position',left+'px '+top+'px');
       });
@@ -88,7 +125,9 @@ $(document).ready(function()
     var
     basesize = $userimage.width(),
     size = getBackgroundSize($userimage.css('background-size')),
+    size2 = getBackgroundSize($coverimage.css('background-size')),
     position = getBackgroundPosition($userimage.css('background-position')),
+    position2 = getBackgroundPosition($coverimage.css('background-position')),
     scale = basesize/500;
 
     var
@@ -97,8 +136,12 @@ $(document).ready(function()
     w = size[0]/scale,
     h = size[1]/scale,
     x = position[0]/scale,
-    y = position[1]/scale;
-    createImage(template,source,x,y,w,h);
+    y = position[1]/scale,
+    w2 = size2[0]/scale,
+    h2 = size2[1]/scale,
+    x2 = position2[0]/scale,
+    y2 = position2[1]/scale;
+    createImage(template,source,x,y,w,h,x2,y2,w2,h2);
   });
 });
 $(window).konami({
@@ -120,7 +163,7 @@ $(window).konami({
   }
 });
 
-function createImage(template,source,x,y,w,h){
+function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
   var cover = new Image();
   cover.src = 'images/object/'+template+'.png';
 
@@ -136,7 +179,7 @@ function createImage(template,source,x,y,w,h){
   ctx.fillStyle="#CCCCCC";
   ctx.fill();
   ctx.drawImage(userimage,x,y,w,h);
-  ctx.drawImage(cover,0,0,500,500);
+  ctx.drawImage(cover,x2,y2,w2,h2);
 
   var base64 = resize_canvas.toDataURL("image/png");
 
@@ -319,6 +362,9 @@ function resizeDragger(size,wrapper,value,upload)
 function getBackgroundSize(string)
 {
   size = string.split(' ');
+  if (size.length < 2){
+    return [500, 500];
+  }
   return [px2int(size[0]),px2int(size[1])];
 }
 function getBackgroundPosition(string)

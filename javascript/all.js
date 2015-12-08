@@ -165,6 +165,33 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
 
   var base64 = resize_canvas.toDataURL("image/jpeg");
 
+  if(confirm("要不要上傳到 gallery 與大家分享呢?")){
+    $.ajax({
+      url: 'https://imgur-apiv3.p.mashape.com/3/image',
+      type: 'post',
+      headers: {
+          X-Mashape-Key: 'RZXowHBxPnmshk1lns9qupoq3VOmp1spOPzjsnnLGfzKshnqLx',
+          Authorization: 'Client-ID 98427a6259b4a7c'
+      },
+      data: {
+          image: base64.split(',')[1]
+      },
+      dataType: 'json',
+      success: function(response) {
+          if(response.success) {
+            var imgur_code = response.data.link.split('.com/')[1].split('.')[0];
+            $.post("save.php",
+            {
+              url: imgur_code
+            }, function(data) {
+              console.log(imgur_code);
+              alert("上傳成功!");
+            });
+          }
+      }
+    });
+  }
+
   // check ie or not
   var ua = window.navigator.userAgent;
   var msie = ua.indexOf("MSIE ");

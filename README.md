@@ -1,45 +1,37 @@
 # 2015 北一制服日・頭貼產生器
+December 2015, CC-BY 3.0, Revised BSD License
+
+Find me at christinesfkao AT gmail DOT com or christinesfkao.tw
 
 ## Demo
 
-[這裡](http://goooooooogle.github.io/profile-picture-generator/)
+		[Click Here](http://christinesfkao.tw/tfg-profile-pic/)
 
 
-## 簡介
+## Intro
+		Upload a photo with you wearing green uniform, and download it with a stamp of "2015/12/12 Uniform Day" on it!
+		Move the stamp and change the size of your photo before downloading.
+		Patches and PRs welcome ;)
 
-本產生器由 [朕的產生器](https://www.facebook.com/kxgen) 開發
+## Licenses
+		Source code licensed by [BSD New](https://opensource.org/licenses/BSD-3-Clause),
+		images, other works and further materials under [CC-BY 3.0](http://creativecommons.org/licenses/by/3.0/).
 
+## Credits
 
-## 授權
+Core Functions:
+		[Shouko 翔子](http://shouko.tw)
+		[7 號頭像產生器](http://goooooooogle.github.io/profile-picture-generator/)
 
-本專案採用 [BSD 授權](https://github.com/goooooooogle/profile-picture-generator/blob/master/LICENSE)
+Template Design:
+    Identity by HTML5 UP
+    html5up.net | @n33co
+    n33.co @n33co dribbble.com/n33
 
-Identity by HTML5 UP
-html5up.net | @n33co
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Icons:
+    Font Awesome (fortawesome.github.com/Font-Awesome)
 
-
-Just a fun little profile/card-style template I whipped up during a break between major
-projects. Minimal, responsive, and powered by Skel + Sass. Enjoy :)
-
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
-
-(* = not included)
-
-AJ
-n33.co @n33co dribbble.com/n33
-
-
-Credits:
-
-	Demo Images:
-		Unsplash (unsplash.com)
-
-	Icons:
-		Font Awesome (fortawesome.github.com/Font-Awesome)
-
-	Other:
+Other:
 		html5shiv.js (@afarkas @jdalton @jon_neal @rem)
 		CSS3 Pie (css3pie.com)
 		Respond.js (j.mp/respondjs)

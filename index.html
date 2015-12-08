@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <!--
-	Identity by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	2015 北一制服日・頭貼產生器 by christinesfkao, 2015, under CC-BY 3.0
+	Template by HTML5 UP  html5up.net | n33.co @n33co dribbble.com/n33
+	Core functions inspired by 7 號頭像產生器(http://goooooooogle.github.io/profile-picture-generator/)
 -->
 <html>
 	<head>
@@ -29,70 +29,35 @@
 							<h2>頭貼產生器</h2>
 						</header>
 
-						<!--<hr />
-						<h2>Extra Stuff!</h2>
-						<form method="post" action="#">
-							<div class="field">
-								<input type="text" name="name" id="name" placeholder="Name" />
-							</div>
-							<div class="field">
-								<input type="email" name="email" id="email" placeholder="Email" />
-							</div>
-							<div class="field">
-								<div class="select-wrapper">
-									<select name="department" id="department">
-										<option value="">Department</option>
-										<option value="sales">Sales</option>
-										<option value="tech">Tech Support</option>
-										<option value="null">/dev/null</option>
-									</select>
-								</div>
-							</div>
-							<div class="field">
-								<textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
-							</div>
-							<div class="field">
-								<input type="checkbox" id="human" name="human" /><label for="human">I'm a human</label>
-							</div>
-							<div class="field">
-								<label>But are you a robot?</label>
-								<input type="radio" id="robot_yes" name="robot" /><label for="robot_yes">Yes</label>
-								<input type="radio" id="robot_no" name="robot" /><label for="robot_no">No</label>
-							</div>
+						<div>
 							<ul class="actions">
-								<li><a href="#" class="button">Get Started</a></li>
+								<li><a href="#" class="button uploadBtn">上傳相片</a></li>
+								<span class="mobile-hide">或直接將圖片拖曳到頁面中</span></br>
+								自由拖曳、調整大小後，即可
+								<li><a href="#" id="normalSubmit" class="button">下載成品</a></li>
 							</ul>
-						</form>
-						<hr />->
-
+						</div>
 						<!-- Preview -->
 						<div id="content" class="container">
-  <div class="row">
-    <div class="text-center" id="generator">
-      <div id="settings">
-        <div class="col-sm-12 control-box">
-          <a class="uploadBtn">請按此上傳圖片</a><span class="mobile-hide">，或直接將圖片拖曳到頁面中</span><br>我們提供了 10 幾種樣板，讓您自由選擇<br>您可自由移動、縮放圖片到合適位置和大小<br>完成後，請點擊「下載圖片」按鈕
-        </div>
-        <input type="radio" name="template" value="1" autocomplete="off" checked="checked">
-						<div class="preview">
-	        <div id="userimage">
-	          <div class="inner" style="background-image: url(images/sample.png)"></div>
-	          <div id="size-slider"><span class="zoomin">＋放大底圖</span><span class="zoomout">縮小底圖－</span></div>
-	          <div id="size-slider2"><span class="zoomin">＋放大徽章</span><span class="zoomout">縮小徽章－</span></div>
-	        </div>
-	        <div id="coverimage">
-	          <div class="inner" style="background-image: url(images/object/1.png)"></div>
-	          <div id="dragger"></div>
-
-	        </div>
-	        <div id="loading"><div class="drop"><img src="images/loading.gif"></div></div>
-
-	      </div>
-
-	      <div id="formbuttons" class="control-box text-center">
-	        <button href="#" id="normalSubmit">下載圖片</button>
-	      </div>
-
+						  <div class="row">
+						    <div class="text-center" id="generator">
+						      <div id="settings">
+						        <input type="radio" name="template" value="1" autocomplete="off" checked="checked">
+												<div class="preview">
+									        <div id="userimage">
+									          <div class="inner" style="background-image: url(images/sample.png)"></div>
+									          <div id="size-slider"><span class="zoomin">＋放大底圖</span><span class="zoomout">縮小底圖－</span></div>
+									          <div id="size-slider2"><span class="zoomin">＋放大徽章</span><span class="zoomout">縮小徽章－</span></div>
+									        </div>
+							        	<div id="coverimage">
+							          	<div class="inner" style="background-image: url(images/object/1.png)"></div>
+							          	<div id="dragger"></div>
+												</div>
+	        							<div id="loading"><div class="drop"><img src="images/loading.gif"></div></div>
+										</div>
+									</div>
+								</div>
+						</div>
 					</section>
 
 

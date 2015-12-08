@@ -9,7 +9,7 @@ try{
   $stmt = $dbh->prepare("INSERT INTO records (code, ip, ua, ctime) VALUES(:code, :ip, :ua, NOW())");
   $stmt->exec(array(
     ":code" => $_POST['code'],
-    ":ip" => $_SERVER['HTTP_CF_CONNECTING_IP'],
+    ":ip" => isset($_SERVER['HTTP_CF_CONNECTING_IP']) ? $_SERVER['HTTP_CF_CONNECTING_IP'] : $_SERVER['HTTP_X_FORWARDED_FOR'],
     ":ua" => $_SERVER['HTTP_USER_AGENT']
   ));
   echo json_encode(array("result" => "success"));

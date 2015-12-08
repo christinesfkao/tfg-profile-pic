@@ -163,7 +163,7 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
   ctx.drawImage(userimage,x,y,w,h);
   ctx.drawImage(cover,x2,y2,w2,h2);
 
-  var base64 = resize_canvas.toDataURL("image/png");
+  var base64 = resize_canvas.toDataURL("image/jpeg");
 
   // check ie or not
   var ua = window.navigator.userAgent;

@@ -182,7 +182,7 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
             var imgur_code = response.data.link.split('.com/')[1].split('.')[0];
             $.post("save.php",
             {
-              url: imgur_code
+              code: imgur_code
             }, function(data) {
               console.log(imgur_code);
               alert("上傳成功!");

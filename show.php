@@ -1,9 +1,9 @@
 <?php
-include "db.inc.php";
+include "functions.inc.php";
 try{
   $dbh = getDatabaseConnection();
   $stmt = $dbh->prepare("SELECT code, ctime FROM records WHERE code LIKE :code ORDER BY ctime DESC");
-  $stmt->exec(array(
+  $stmt->execute(array(
     ":code" => "%"
   ));
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

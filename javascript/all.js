@@ -146,6 +146,8 @@ $(document).ready(function()
 });
 
 function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
+  ga('send', 'event', 'Image', 'create');
+
   var cover = new Image();
   cover.src = 'images/object/'+template+'.png';
 
@@ -166,6 +168,8 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
   var base64 = resize_canvas.toDataURL("image/jpeg");
 
   if(confirm("要不要上傳到 gallery 與大家分享呢?")){
+    ga('send', 'event', 'Image', 'share', 'start');
+
     $.ajax({
       url: 'https://imgur-apiv3.p.mashape.com/3/image',
       type: 'post',
@@ -179,11 +183,13 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
       dataType: 'json',
       success: function(response) {
         if(response.success) {
+          ga('send', 'event', 'Image', 'share', 'imgur');
           $.post("save.php", {
             code: response.data.id
           },
           function(data){
-             alert("上傳成功!");
+            ga('send', 'event', 'Image', 'share', 'save');
+            alert("上傳成功!");
           });
         }
       }
@@ -202,6 +208,7 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
   else{
     $('#download').attr('href',base64);
     $('#download')[0].click();
+    ga('send', 'event', 'Image', 'download');
   }
 }
 
@@ -212,6 +219,7 @@ $(function(){
   dropZone.addEventListener('drop', handleFileSelect, false);
 
   $('.uploadBtn').click(function(){
+    ga('send', 'event', 'Image', 'upload', 'click');
     $('#uploadInput').click();
   });
   $('#uploadInput').on('change',function(){
@@ -222,6 +230,7 @@ $(function(){
 
 // drag image
 function handleFileSelect(evt) {
+  ga('send', 'event', 'Image', 'upload', 'drag');
   evt.stopPropagation();
   evt.preventDefault();
   var files = evt.dataTransfer.files;

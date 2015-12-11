@@ -183,9 +183,12 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
     success: function(response) {
       if(response.success) {
         ga('send', 'event', 'Image', 'share', 'imgur');
-        var set_public = confirm("產生成功！要不要在 gallery 與大家分享呢?");
+        var code = response.data.id;
+        if(!confirm("產生成功！要不要在 gallery 與大家分享呢?")){
+          code = "#" + code;
+        }
         $.post("save.php", {
-          code: set_public ? "" : "#" + response.data.id
+          code: code
         },
         function(data){
           ga('send', 'event', 'Image', 'share', 'save');

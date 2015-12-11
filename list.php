@@ -24,6 +24,7 @@ try{
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="javascript/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="stylesheets/all.css" />
 		<link rel="stylesheet" href="stylesheets/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="stylesheets/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="stylesheets/ie8.css" /><![endif]-->
@@ -41,22 +42,12 @@ try{
 							<h1>2015/12/12</br>北一制服日・頭貼產生器</h1>
 						</header>
 						<div>
-							<ul class="actions">
-								</br><li><a href="#" class="button uploadBtn">上傳相片</a></li>
-								<span class="mobile-hide">或直接將圖片拖曳到頁面中</span></br>
-								自由拖曳、調整大小後，即可
-								<li><a href="#" id="normalSubmit" class="button">下載成品</a></li>
-							</ul>
-						</div>
-						<!-- Preview -->
-						<div id="content" class="container">
-						  <div class="row">
-						    <?php
+              <?php
                 foreach($result as $row){
-                  echo '<img src="//i.imgur.com/'.$row['code'].'.jpg">';
+                  echo '<img src="//i.imgur.com/'.$row['code'].'.jpg"><br>';
                 }
-                ?>
-						</div>
+              ?>
+              </div>
 						<div>
 							<ul class="actions">
 							</br></br></br></br>
@@ -82,9 +73,29 @@ try{
 				    </footer>
 
 			</div>
+
 		<!-- Scripts -->
 			<!--[if lte IE 8]><script src="javascript/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
 			<script src="//code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 			<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+			<script src="vender/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+			<script src="vender/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+			<script src="vender/jquery.ui.rotatable.min.js" type="text/javascript"></script>
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-59778322-4', 'auto');
+			  ga('send', 'pageview');
+
+			</script>
 	</body>
 </html>

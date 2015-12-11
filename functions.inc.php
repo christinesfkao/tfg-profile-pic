@@ -1,6 +1,7 @@
 <?php
   function getDatabaseConnection(){
-    $dburl = parse_url(getenv("DATABASE_URL"));
+    $dburl = getenv("DATABASE_URL") != "" ? getenv("DATABASE_URL") : "mysql://tfg:tfg@localhost/tfg";
+    $dburl = parse_url($dburl);
     $dbname = explode('/', $dburl["path"])[1];
     $dbh = new PDO("mysql:host=".$dburl['host'].";dbname=".$dbname, $dburl['user'], $dburl['pass'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
     return $dbh;

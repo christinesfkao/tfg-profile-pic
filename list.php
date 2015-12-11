@@ -2,17 +2,22 @@
 include "functions.inc.php";
 try{
   $dbh = getDatabaseConnection();
-  $stmt = $dbh->prepare("SELECT code, ctime FROM records WHERE id = :id ORDER BY ctime");
+  $start = isset($_GET['page']) ? abs(intval($_GET['page'])) : 0;
+  $stmt = $dbh->prepare("SELECT code, ctime FROM records WHERE code LIKE :code ORDER BY ctime DESC LIMIT :start,20");
+  $stmt->bindValue(":start", $start, PDO::PARAM_INT);
   $stmt->execute(array(
-    "id" => isset($_GET['id']) ? $_GET['id'] : ""
+    ":code" => "%"
   ));
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  echo json_encode(array("result" => "success", "data" => $result));
 }catch(PDOException $e){
   http_response_code(500);
   echo json_encode(array("message" => $e->getMessage(), "line" => $e->getLine()));
   die();
 }
-?><!DOCTYPE HTML>
+?>
+
+<!DOCTYPE HTML>
 <!--
 	2015 北一制服日・頭貼產生器 by christinesfkao, 2015, under CC-BY 3.0
 	Template by HTML5 UP  html5up.net | n33.co @n33co dribbble.com/n33

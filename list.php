@@ -3,21 +3,16 @@ include "functions.inc.php";
 try{
   $dbh = getDatabaseConnection();
   $start = isset($_GET['page']) ? abs(intval($_GET['page'])) : 0;
-  $stmt = $dbh->prepare("SELECT code, ctime FROM records WHERE code LIKE :code ORDER BY ctime DESC LIMIT :start,20");
+  $stmt = $dbh->prepare("SELECT code, ctime FROM records ORDER BY ctime DESC LIMIT :start,20");
   $stmt->bindValue(":start", $start, PDO::PARAM_INT);
-  $stmt->execute(array(
-    ":code" => "%"
-  ));
+  $stmt->execute();
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  echo json_encode(array("result" => "success", "data" => $result));
 }catch(PDOException $e){
   http_response_code(500);
   echo json_encode(array("message" => $e->getMessage(), "line" => $e->getLine()));
   die();
 }
-?>
-
-<!DOCTYPE HTML>
+?><!DOCTYPE HTML>
 <!--
 	2015 北一制服日・頭貼產生器 by christinesfkao, 2015, under CC-BY 3.0
 	Template by HTML5 UP  html5up.net | n33.co @n33co dribbble.com/n33
@@ -56,23 +51,11 @@ try{
 						<!-- Preview -->
 						<div id="content" class="container">
 						  <div class="row">
-						    <div class="text-center" id="generator">
-						      <div id="settings">
-						        <input type="radio" name="template" value="1" autocomplete="off" checked="checked">
-												<div class="preview">
-									        <div id="userimage">
-									          <div class="inner" style="background-image: url(images/sample.jpg)"></div>
-									          <div id="size-slider"><span class="zoomin">＋放大底圖</span><span class="zoomout">縮小底圖－</span></div>
-									          <div id="size-slider2"><span class="zoomin">＋放大徽章</span><span class="zoomout">縮小徽章－</span></div>
-									        </div>
-							        	<div id="coverimage">
-							          	<div class="inner" style="background-image: url(images/object/1.png)"></div>
-							          	<div id="dragger"></div>
-												</div>
-	        							<div id="loading"><div class="drop"><img src="images/loading.gif"></div></div>
-										</div>
-									</div>
-								</div>
+						    <?php
+                foreach($result as $row){
+                  echo '<img src="//i.imgur.com/'.$row['code'].'.jpg">';
+                }
+                ?>
 						</div>
 						<div>
 							<ul class="actions">

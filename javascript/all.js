@@ -178,16 +178,14 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
       },
       dataType: 'json',
       success: function(response) {
-          if(response.success) {
-            var imgur_code = response.data.link.split('.com/')[1].split('.')[0];
-            $.post("save.php",
-            {
-              code: imgur_code
-            }, function(data) {
-              console.log(imgur_code);
-              alert("上傳成功!");
-            });
-          }
+        if(response.success) {
+          $.post("save.php", {
+            code: response.data.id
+          },
+          function(data){
+             alert("上傳成功!");
+          });
+        }
       }
     });
   }

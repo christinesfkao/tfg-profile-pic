@@ -147,7 +147,7 @@ $(document).ready(function()
 
 function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
   ga('send', 'event', 'Image', 'create');
-
+  $("#loading-modal").css("display", "");
   var cover = new Image();
   cover.src = 'images/object/'+template+'.png';
 
@@ -167,49 +167,46 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
 
   var base64 = resize_canvas.toDataURL("image/jpeg");
 
-  if(confirm("要不要上傳到 gallery 與大家分享呢?")){
-    ga('send', 'event', 'Image', 'share', 'start');
+  ga('send', 'event', 'Image', 'share', 'start');
 
-    $.ajax({
-      url: 'https://imgur-apiv3.p.mashape.com/3/image',
-      type: 'post',
-      headers: {
-          'X-Mashape-Key': 'RZXowHBxPnmshk1lns9qupoq3VOmp1spOPzjsnnLGfzKshnqLx',
-          'Authorization': 'Client-ID 98427a6259b4a7c'
-      },
-      data: {
-          image: base64.split(',')[1]
-      },
-      dataType: 'json',
-      success: function(response) {
-        if(response.success) {
-          ga('send', 'event', 'Image', 'share', 'imgur');
-          $.post("save.php", {
-            code: response.data.id
-          },
-          function(data){
-            ga('send', 'event', 'Image', 'share', 'save');
-            alert("上傳成功!");
-          });
+  $.ajax({
+    url: 'https://imgur-apiv3.p.mashape.com/3/image',
+    type: 'post',
+    headers: {
+        'X-Mashape-Key': 'RZXowHBxPnmshk1lns9qupoq3VOmp1spOPzjsnnLGfzKshnqLx',
+        'Authorization': 'Client-ID 98427a6259b4a7c'
+    },
+    data: {
+        image: base64.split(',')[1]
+    },
+    dataType: 'json',
+    success: function(response) {
+      if(response.success) {
+        ga('send', 'event', 'Image', 'share', 'imgur');
+        var set_public = confirm("產生成功！要不要在 gallery 與大家分享呢?");
+        $.post("save.php", {
+          code: set_public ? "" : "#" + response.data.id
+        },
+        function(data){
+          ga('send', 'event', 'Image', 'share', 'save');
+          $("#loading-modal").css("display", "none");
+        });
+        // check ie or not
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)){
+          var html="<p>請按右鍵另存圖片</p>";
+          html+="<img src='"+base64+"' alt='7'/>";
+          var tab=window.open();
+          tab.document.write(html);
+        }else{
+          $('#download').attr('href',base64);
+          $('#download')[0].click();
+          ga('send', 'event', 'Image', 'download');
         }
       }
-    });
-  }
-
-  // check ie or not
-  var ua = window.navigator.userAgent;
-  var msie = ua.indexOf("MSIE ");
-  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)){
-    var html="<p>請按右鍵另存圖片</p>";
-    html+="<img src='"+base64+"' alt='7'/>";
-    var tab=window.open();
-    tab.document.write(html);
-  }
-  else{
-    $('#download').attr('href',base64);
-    $('#download')[0].click();
-    ga('send', 'event', 'Image', 'download');
-  }
+    }
+  });
 }
 
 //uploader

@@ -3,7 +3,7 @@ include "functions.inc.php";
 try{
   $dbh = getDatabaseConnection();
   $start = isset($_GET['page']) ? abs(intval($_GET['page'])) : 0;
-  $stmt = $dbh->prepare("SELECT code, ctime FROM records ORDER BY ctime DESC LIMIT :start,20");
+  $stmt = $dbh->prepare("SELECT code, ctime FROM records WHERE code NOT LIKE '#%' ORDER BY ctime DESC LIMIT :start,20");
   $stmt->bindValue(":start", $start, PDO::PARAM_INT);
   $stmt->execute();
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

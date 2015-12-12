@@ -1,5 +1,5 @@
 <?php
-include "functions.inc.php";
+include "inc/functions.php";
 if(!isset($_POST['code'])){
   http_response_code(400);
   die();

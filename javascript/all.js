@@ -192,8 +192,11 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
         },
         function(data){
           ga('send', 'event', 'Image', 'share', 'save');
+          document.location.href = './show.php?finish=1&code=' + response.data.id;
           $("#loading-modal").css("display", "none");
         });
+
+        /*
         // check ie or not
         var ua = window.navigator.userAgent;
         var msie = ua.indexOf("MSIE ");
@@ -207,6 +210,7 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
           $('#download')[0].click();
           ga('send', 'event', 'Image', 'download');
         }
+        */
       }
     }
   });

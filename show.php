@@ -15,6 +15,9 @@ try{
     header("Location: list.php");
     exit();
   }
+  if($result['code'][0] == '#'){
+    $result['code'] = substr($result['code'], 1);
+  }
 }catch(PDOException $e){
   http_response_code(500);
   echo json_encode(array("message" => $e->getMessage(), "line" => $e->getLine()));
@@ -32,8 +35,14 @@ include 'inc/header.php';
             <br><br>
 						<ul class="actions">
               <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://tfg-profile-pic.infoplat.org/show.php?code=<?= $result['code'] ?>" target="_blank" class="button">分享到 Facebook</a></li>
+              <?php if(isset($_GET['finish'])){ ?>
+                <li><a href="./" class="button">再做一張</a></li>
+              <?php } ?>
               <br><br>
-							<li><a href="list.php" class="button">看看其他人的頭貼</a></li><li><a href="./" class="button">產生我的頭貼</a></li>
+							<li><a href="list.php" class="button">看看其他人的頭貼</a></li>
+              <?php if(!isset($_GET['finish'])){ ?>
+                <li><a href="./" class="button">產生我的頭貼</a></li>
+              <?php } ?>
 						</ul>
 					</div>
 					</section>

@@ -8,7 +8,7 @@ try{
   $dbh = getDatabaseConnection();
   $stmt = $dbh->prepare("INSERT INTO records (code, ip, ua, ctime) VALUES(:code, :ip, :ua, NOW())");
   $stmt->execute(array(
-    ":code" => $_POST['code'],
+    ":code" => preg_replace("/[^a-zA-Z0-9#]/", "", $_POST['code']),
     ":ip" => getIP(),
     ":ua" => $_SERVER['HTTP_USER_AGENT']
   ));

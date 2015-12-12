@@ -37,6 +37,6 @@
 							<span class="avatar"><img src="images/avatar.png" alt="" /></span>
 							<h1>2015/12/12</br>北一制服日・頭貼產生器</h1>
 							<ul class="actions">
-							  <li><a href="/" class="button">產生我的頭貼</a></li>
+							  <li><a href="./" class="button">產生我的頭貼</a></li>
 							</ul>
 						</header>

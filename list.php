@@ -55,7 +55,7 @@ printPager($page, count($result));
 printPager($page, count($result));
 ?>
 <ul class="actions">
-  <li><a href="/" class="button">產生我的頭貼</a></li>
+  <li><a href="./" class="button">產生我的頭貼</a></li>
 </ul>
 					</section>
 

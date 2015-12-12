@@ -33,7 +33,7 @@ include 'inc/header.php';
 						<ul class="actions">
               <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://tfg-profile-pic.infoplat.org/show.php?code=<?= $result['code'] ?>" target="_blank" class="button">分享到 Facebook</a></li>
               <br><br>
-							<li><a href="list.php" class="button">看看其他人的頭貼</a></li><li><a href="/" class="button">產生我的頭貼</a></li>
+							<li><a href="list.php" class="button">看看其他人的頭貼</a></li><li><a href="./" class="button">產生我的頭貼</a></li>
 						</ul>
 					</div>
 					</section>

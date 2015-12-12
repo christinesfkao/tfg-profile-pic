@@ -750,7 +750,7 @@ body.is-ie #wrapper {
 }
 
 #loading-modal {
-   display:none;z-index:1000;
+   z-index:1000;
    background:rgba(0,0,0,0.7);
    position:fixed;
    left:0;

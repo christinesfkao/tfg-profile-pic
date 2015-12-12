@@ -525,6 +525,10 @@ label.checkbox {
 .preview #size-slider2 {
   bottom: -90px;
 }
+
+.preview .ui-slider-handle{
+  position: absolute;
+}
 /* line 67, ../sass/partials/_preview.scss */
 .preview #size-slider.ui-widget-content,
 .preview #size-slider2.ui-widget-content

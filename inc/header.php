@@ -10,8 +10,14 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="javascript/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="vender/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="stylesheets/all.css" />
 		<link rel="stylesheet" href="stylesheets/main.css" />
+		<style type="text/css">
+		#main{
+			min-width: 50%;
+		}
+		</style>
 		<!--[if lte IE 9]><link rel="stylesheet" href="stylesheets/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="stylesheets/ie8.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="stylesheets/noscript.css" /></noscript>
@@ -20,3 +26,9 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
+        <!-- Main -->
+					<section id="main">
+						<header>
+							<span class="avatar"><img src="images/avatar.png" alt="" /></span>
+							<h1>2015/12/12</br>北一制服日・頭貼產生器</h1>
+						</header>

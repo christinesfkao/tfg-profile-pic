@@ -34,9 +34,9 @@ include 'inc/header.php';
 					<div>
             <br><br>
 						<ul class="actions">
-              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://tfg-profile-pic.infoplat.org/show.php?code=<?= $result['code'] ?>" target="_blank" class="button">分享到 Facebook</a></li>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://tfg-profile-pic.infoplat.org/show.php?code=<?= $result['code'] ?>" target="_blank" class="button" id="fb-share">分享到 Facebook</a></li>
               <?php if(isset($_GET['finish'])){ ?>
-                <li><a href="./" class="button">再做一張</a></li>
+                <li><a href="./" class="button" id="one-more">再做一張</a></li>
               <?php } ?>
               <br><br>
 							<li><a href="list.php" class="button">看看其他人的頭貼</a></li>

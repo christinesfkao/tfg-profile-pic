@@ -36,6 +36,19 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-59778322-4', 'auto');
 ga('send', 'pageview');
 
+<?php
+if(isset($_GET['finish'])){
+  echo "ga('send', 'event', 'Image', 'share', 'view');";
+}
+?>
+$(document).ready(function(){
+  $("#one-more").click(function(){
+    ga('send', 'event', 'Button', 'click', 'one-more');
+  });
+  $("#fb-share").click(function(){
+    ga('send', 'event', 'Button', 'click', 'facebook-share');
+  })
+});
 </script>
 </body>
 </html>

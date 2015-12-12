@@ -185,13 +185,14 @@ function createImage(template,source,x,y,w,h,x2,y2,w2,h2){
         ga('send', 'event', 'Image', 'share', 'imgur');
         var code = response.data.id;
         if(!confirm("產生成功！要不要在 gallery 與大家分享呢?")){
+          ga('send', 'event', 'Image', 'share', 'deny-public');
           code = "#" + code;
         }
         $.post("save.php", {
           code: code
         },
         function(data){
-          ga('send', 'event', 'Image', 'share', 'save');
+          ga('send', 'event', 'Image', 'share', 'saved');
           document.location.href = './show.php?finish=1&code=' + response.data.id;
           $("#loading-modal").css("display", "none");
         });

@@ -1,60 +1,41 @@
 <?php
 include "inc/functions.php";
+if(!isset($_GET['code'])){
+  header("Location: list.php");
+  exit();
+}
 try{
   $dbh = getDatabaseConnection();
-  $stmt = $dbh->prepare("SELECT code, ctime FROM records WHERE code = :code");
+  $stmt = $dbh->prepare("SELECT code, ctime FROM records WHERE code = :code OR code = CONCAT('#', :code)");
   $stmt->execute(array(
-    "code" => isset($_GET['code']) ? $_GET['code'] : ""
+    "code" => $_GET['code']
   ));
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  if(empty($result)){
+    header("Location: list.php");
+    exit();
+  }
 }catch(PDOException $e){
   http_response_code(500);
   echo json_encode(array("message" => $e->getMessage(), "line" => $e->getLine()));
   die();
 }
+$og_path = 'show.php?code='.$result['code'];
+$og_image = 'https://i.imgur.com/'.$result['code'].'l.jpg';
 include 'inc/header.php';
 ?>
-				<!-- Main -->
-					<section id="main">
-						<header>
-							<span class="avatar"><img src="images/avatar.png" alt="" /></span>
-							<h1>2015/12/12</br>北一制服日・頭貼產生器</h1>
-						</header>
-						<div>
-							<ul class="actions">
-								</br><li><a href="#" class="button uploadBtn">上傳相片</a></li>
-								<span class="mobile-hide">或直接將圖片拖曳到頁面中</span></br>
-								自由拖曳、調整大小後，即可
-								<li><a href="#" id="normalSubmit" class="button">下載成品</a></li>
-							</ul>
-						</div>
-						<!-- Preview -->
-						<div id="content" class="container">
-						  <div class="row">
-						    <div class="text-center" id="generator">
-						      <div id="settings">
-						        <input type="radio" name="template" value="1" autocomplete="off" checked="checked">
-												<div class="preview">
-									        <div id="userimage">
-									          <div class="inner" style="background-image: url(images/sample.jpg)"></div>
-									          <div id="size-slider"><span class="zoomin">＋放大底圖</span><span class="zoomout">縮小底圖－</span></div>
-									          <div id="size-slider2"><span class="zoomin">＋放大徽章</span><span class="zoomout">縮小徽章－</span></div>
-									        </div>
-							        	<div id="coverimage">
-							          	<div class="inner" style="background-image: url(images/object/1.png)"></div>
-							          	<div id="dragger"></div>
-												</div>
-	        							<div id="loading"><div class="drop"><img src="images/loading.gif"></div></div>
-										</div>
-									</div>
-								</div>
-						</div>
-						<div>
-							<ul class="actions">
-							</br></br></br></br>
-								<li><a href="#" class="button">看看其他人的頭貼</a></li>
-							</ul>
-						</div>
+
+          <div>
+            <img style="max-width: 100%" src="//i.imgur.com/<?= $result['code'] ?>.jpg">
+          </div>
+					<div>
+            <br><br>
+						<ul class="actions">
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://tfg-profile-pic.infoplat.org/show.php?code=<?= $result['code'] ?>" target="_blank" class="button">分享到 Facebook</a></li>
+              <br><br>
+							<li><a href="list.php" class="button">看看其他人的頭貼</a></li><li><a href="/" class="button">產生我的頭貼</a></li>
+						</ul>
+					</div>
 					</section>
 
 <?php include 'inc/footer.php' ?>

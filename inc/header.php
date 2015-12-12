@@ -8,6 +8,10 @@
 	<head>
 		<title>2015 北一制服日・頭貼產生器</title>
 		<meta charset="utf-8" />
+		<meta property="og:title" content="2015 北一制服日・頭貼產生器"/>
+		<meta property="og:url" content="https://tfg-profile-pic.infoplat.org/<?= isset($og_path) ? $og_path : '' ?>"/>
+		<meta property="og:image" content="<?= isset($og_image) ? $og_image : 'https://tfg-profile-pic.infoplat.org/images/avatar.png' ?>"/>
+		<meta property="og:site_name" content="IMDb"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="javascript/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="vender/bootstrap/css/bootstrap.min.css" />

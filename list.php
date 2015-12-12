@@ -14,6 +14,7 @@ try{
   echo json_encode(array("message" => $e->getMessage(), "line" => $e->getLine()));
   die();
 }
+$og_path = 'list.php';
 include 'inc/header.php';
 ?>
 						<div>

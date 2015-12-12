@@ -26,7 +26,7 @@ include 'inc/header.php';
 ?>
 
           <div>
-            <img style="max-width: 100%" src="//i.imgur.com/<?= $result['code'] ?>.jpg">
+            <img class="show-img" src="//i.imgur.com/<?= $result['code'] ?>.jpg">
           </div>
 					<div>
             <br><br>

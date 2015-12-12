@@ -1,0 +1,12 @@
+.list-img, .show-img {
+  border-radius:10%
+}
+.list-img {
+  width:100%;
+}
+.show-img {
+   max-width: 100%;
+}
+.current-page {
+  margin: auto 10px;
+}
